@@ -1,10 +1,16 @@
+import { btPets, fav, logo, nope } from '@/assets/Icons'
 import Api from '@/common/axios'
+import Card from '@/components/Card'
+import EmptyCard from '@/components/EmptyCard'
+import { Button, Buttons, Container, Favorite, Home, Logo } from '@/components/styles/Home.styled'
+import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 
-type Cat = {
+export type Cat = {
     id: string,
     breeds: {
         origin: string,
+        name: string
         temperament: Array<string>,
         weight: {
           metric: string
@@ -26,6 +32,7 @@ const Tinder = () => {
               id: res.data[0].id, 
               breeds: {
                   origin: res.data[0].breeds[0].origin,
+                  name: res.data[0].breeds[0].name,
                   temperament: temperament,
                   weight: {
                       metric: res.data[0].breeds[0].weight.metric
@@ -61,13 +68,19 @@ const Tinder = () => {
   }
 
   return (
-    <>
-        <div>
-            <img  src={catData?.url}/>
-            <button onClick={() => { getNewCat()} }>NO</button>
-            <button onClick={() => { setFavorite(catData?.id as string)} }>YES</button>
-        </div> 
-    </>
+    <Container>
+        <Home>
+            <Logo src={logo.src}/>
+            <Favorite href={'/Favorites'}>
+                <button><img src={fav.src}/></button> 
+            </Favorite>          
+            { catData ? <Card catData={catData}/> : <EmptyCard/> }
+            <Buttons>
+                <Button onClick={() => { getNewCat()} }><img src={nope.src}/></Button>
+                <Button onClick={() => { setFavorite(catData?.id as string)} }><img src={btPets.src}/></Button>
+            </Buttons>
+        </Home> 
+    </Container>
   )
 
 }

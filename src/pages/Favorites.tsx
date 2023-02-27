@@ -2,16 +2,13 @@ import Api from '@/common/axios'
 import React, { useEffect, useState } from 'react'
 
 type FavCat = {
-    id: string,
-    url: string
-}
-
-type Response = {
+    id: number,
     image: {
         id: string,
         url: string   
     }
 }
+
 
 
 const Favorites = () => {
@@ -23,9 +20,8 @@ const Favorites = () => {
         Api.get('/favourites', { params: {'sub_id': 'test_user_123'} })
         .then((res) => {
             let favs: Array<FavCat> = []
-            res.data.map((cat: Response) => {
-                let {id, url}: FavCat = cat.image
-                favs.push({id: id, url: url})
+            res.data.map((cat: FavCat) => {
+                favs.push({ id: cat.id, image: { id: cat.image.id, url: cat.image.url } })
             })
             setFavCats(favs)
         })
@@ -34,11 +30,21 @@ const Favorites = () => {
           })
     }, [])
 
+    const removeFavorite = (id: number) => {
+        Api.delete(`/favourites/:${id}`)
+        .then((res) => {
+            console.log(res)
+        })
+        .catch((error) => {
+            console.log('erro ao remover favorito')
+        })
+    }
+
     return (
         <>
         <ul>
             {favCats?.map((cats) => {
-                return <li>{cats.url}</li>
+                return <li>{cats.image.url}</li>
             })}
         </ul>
         </>
