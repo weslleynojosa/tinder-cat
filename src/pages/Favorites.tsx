@@ -1,7 +1,12 @@
+import { favActions, getFavorites } from '@/app/fav-slice'
+import { useAppDispatch, useAppSelector } from '@/app/hooks'
+import { back, favTitle, pets } from '@/assets/Icons'
 import Api from '@/common/axios'
+import { ActionButton, CardFav, CatGrid, Fav, Header, Title } from '@/components/styles/Favorites.styled'
+import { Container } from '@/components/styles/Home.styled'
 import React, { useEffect, useState } from 'react'
 
-type FavCat = {
+export type FavCat = {
     id: number,
     image: {
         id: string,
@@ -14,26 +19,17 @@ type FavCat = {
 const Favorites = () => {
     //listar favoritos do usuário logado
     //redux para guardar os favoritos
-    const [favCats, setFavCats] = useState<FavCat[]>([])
-
+    // const [favCats, setFavCats] = useState<FavCat[]>([])
+    const favCats = useAppSelector(state => state.favorite)
+    const dispatch = useAppDispatch()
     useEffect(() => {
-        Api.get('/favourites', { params: {'sub_id': 'test_user_123'} })
-        .then((res) => {
-            let favs: Array<FavCat> = []
-            res.data.map((cat: FavCat) => {
-                favs.push({ id: cat.id, image: { id: cat.image.id, url: cat.image.url } })
-            })
-            setFavCats(favs)
-        })
-        .catch((error) => {
-            console.log(error)
-          })
+        dispatch(getFavorites())
     }, [])
 
     const removeFavorite = (id: number) => {
-        Api.delete(`/favourites/:${id}`)
+        Api.delete(`/favourites/${id}`)
         .then((res) => {
-            console.log(res)
+            dispatch(favActions.removeFavorite(id))
         })
         .catch((error) => {
             console.log('erro ao remover favorito')
@@ -41,13 +37,24 @@ const Favorites = () => {
     }
 
     return (
-        <>
-        <ul>
-            {favCats?.map((cats) => {
-                return <li>{cats.image.url}</li>
-            })}
-        </ul>
-        </>
+        <Container>
+            <Fav>
+                <Header>
+                    <Title src={favTitle.src}/>
+                    <ActionButton href={'/Tinder'}>
+                        <button><img src={back.src}/></button>
+                    </ActionButton>
+                </Header>
+                <CatGrid>
+                    {favCats.cats?.map((cats, index) => {
+                        return <CardFav key={index}>
+                                <img className='cat-photo' src={cats.image.url}/>
+                                <button onClick={() => { removeFavorite(cats.id) }}><img src={pets.src}/></button>
+                            </CardFav>
+                    })}
+                </CatGrid>
+            </Fav>
+        </Container>
     )
 
 }

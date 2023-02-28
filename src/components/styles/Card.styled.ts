@@ -16,6 +16,24 @@ export const CardCat = styled.div`
     }
 `
 
+export const Empty = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    height: 77%;
+    position: relative;
+    margin: 0 10px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 20px rgb(0 0 0 / 10%);
+    overflow: hidden;
+
+    img {
+        width: 150px;
+        height: 150px;
+    }
+`
+
 export const CardInfo = styled.div`
     position: absolute;
     background: rgb(66 66 66 / 40%);;

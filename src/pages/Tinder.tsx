@@ -24,6 +24,7 @@ const Tinder = () => {
     const [catData, setCatData] = useState<Cat>()
 
     const getNewCat = () => {
+        setCatData(undefined)
         Api.get('/images/search', { params: {'has_breeds' : 1} })
         .then((res) => {
           let catRes = {} as Cat
@@ -73,7 +74,7 @@ const Tinder = () => {
             <Logo src={logo.src}/>
             <Favorite href={'/Favorites'}>
                 <button><img src={fav.src}/></button> 
-            </Favorite>          
+            </Favorite>       
             { catData ? <Card catData={catData}/> : <EmptyCard/> }
             <Buttons>
                 <Button onClick={() => { getNewCat()} }><img src={nope.src}/></Button>

@@ -7,6 +7,7 @@ import back from './chevron_left.svg'
 import favTitle from './Favs.svg'
 import scale from './scale.svg'
 import pets from './pets.svg'
+import catFace from './cat-face.svg'
 
 export {
     btPets,
@@ -17,5 +18,6 @@ export {
     back,
     favTitle,
     scale,
-    pets
+    pets,
+    catFace
 }

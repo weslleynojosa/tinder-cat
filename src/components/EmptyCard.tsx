@@ -1,10 +1,13 @@
-import { CardCat } from "./styles/Card.styled"
+import { catFace } from "@/assets/Icons"
+import { CardCat, Empty } from "./styles/Card.styled"
 
 
 const EmptyCard = () => {
 
     return (
-        <CardCat/>
+        <Empty>
+            <img src={catFace.src}/>
+        </Empty>
     )
 }
 
