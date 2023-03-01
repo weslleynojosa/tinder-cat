@@ -8,6 +8,7 @@ import favTitle from './Favs.svg'
 import scale from './scale.svg'
 import pets from './pets.svg'
 import catFace from './cat-face.svg'
+import cryCat from './crying-cat.svg'
 
 export {
     btPets,
@@ -19,5 +20,6 @@ export {
     favTitle,
     scale,
     pets,
-    catFace
+    catFace,
+    cryCat
 }

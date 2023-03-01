@@ -36,6 +36,14 @@ export const Favorite = styled(Link)`
     }
 `
 
+export const Logout = styled.button`
+    position: absolute;
+    left: 0;
+    margin: 10px 0 15px;
+    border: none;
+    background: #FFF;
+`
+
 export const Buttons = styled.div`
     display: flex;
     flex-direction: row;
@@ -53,4 +61,8 @@ export const Button = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    :focus-visible {
+        outline: none;
+    }
 `

@@ -1,9 +1,11 @@
+import { authActions } from '@/app/auth-slice'
+import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { btPets, fav, logo, nope } from '@/assets/Icons'
 import Api from '@/common/axios'
 import Card from '@/components/Card'
 import EmptyCard from '@/components/EmptyCard'
-import { Button, Buttons, Container, Favorite, Home, Logo } from '@/components/styles/Home.styled'
-import Link from 'next/link'
+import { Button, Buttons, Container, Favorite, Home, Logo, Logout } from '@/components/styles/Home.styled'
+import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 
 export type Cat = {
@@ -22,6 +24,9 @@ export type Cat = {
 
 const Tinder = () => {
     const [catData, setCatData] = useState<Cat>()
+    const token = useAppSelector(state => state.auth.userData?.token)
+    const router = useRouter()
+    const dispatch = useAppDispatch()
 
     const getNewCat = () => {
         setCatData(undefined)
@@ -55,17 +60,26 @@ const Tinder = () => {
   const setFavorite = (id: string) => {
     const data = {
         'image_id': id,
-        'sub_id': 'test_user_123'
+        'sub_id': token
     }
 
-    Api.post('favourites', data)
-    .then((res) => {
-        console.log(res)
+    if (id) {
+        Api.post('favourites', data)
+        .then((res) => {
+            console.log(res)
+            getNewCat()
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    } else {
         getNewCat()
-    })
-    .catch((error) => {
-        console.log(error)
-    })
+    }
+  }
+
+  const logout = () => {
+    dispatch(authActions.logout())
+    router.push('/')
   }
 
   return (
@@ -74,11 +88,16 @@ const Tinder = () => {
             <Logo src={logo.src}/>
             <Favorite href={'/Favorites'}>
                 <button><img src={fav.src}/></button> 
-            </Favorite>       
+            </Favorite>
+            <Logout onClick={logout}>
+                <img src={fav.src}/> 
+            </Logout>         
             { catData ? <Card catData={catData}/> : <EmptyCard/> }
             <Buttons>
-                <Button onClick={() => { getNewCat()} }><img src={nope.src}/></Button>
-                <Button onClick={() => { setFavorite(catData?.id as string)} }><img src={btPets.src}/></Button>
+                <Button onClick={getNewCat}><img src={nope.src}/></Button>
+                <Button onClick={() => { setFavorite(catData?.id as string) }}>
+                    <img src={btPets.src}/>
+                </Button>
             </Buttons>
         </Home> 
     </Container>

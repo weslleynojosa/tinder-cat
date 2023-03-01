@@ -1,6 +1,8 @@
 import Api from "@/common/axios";
+import { user } from "@/common/users";
 import { FavCat } from "@/pages/Favorites";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { useAppSelector } from "./hooks";
 
 interface IFavCatState {
     cats?: FavCat[];
@@ -12,9 +14,9 @@ const initialState: IFavCatState = {
     loading: 'idle'
 }
 
-export const getFavorites = createAsyncThunk('favorite/getFavorites', async () => {
+export const getFavorites = createAsyncThunk<any, user>('favorite/getFavorites', async (userData) => {
     try {
-        const res = await Api.get('/favourites', { params: { 'sub_id': 'test_user_123' } });
+        const res = await Api.get('/favourites', { params: { 'sub_id': userData.token } });
         let favs: Array<FavCat> = [];
         res.data.map((cat: FavCat) => {
             favs.push({ id: cat.id, image: { id: cat.image.id, url: cat.image.url } });

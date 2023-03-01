@@ -1,6 +1,7 @@
 import { combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import authSlice from './auth-slice';
 import favSlice from './fav-slice';
 
 const persistConfig = {
@@ -9,6 +10,7 @@ const persistConfig = {
 }
 
 const reducer = combineReducers({
+    auth: authSlice.reducer,
     favorite: favSlice.reducer
 })
 

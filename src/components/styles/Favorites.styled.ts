@@ -75,3 +75,23 @@ export const CardFav = styled.div`
         top: 5px;
     }
 `
+
+export const EmptyFav = styled.div`
+    margin: 65px auto 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+        width: 30%;
+    }
+
+    span {
+        font-size: 1em;
+        font-weight: 700;
+        color: #FF8B37;
+        padding: 30px;
+        text-align: center;
+    }
+`
