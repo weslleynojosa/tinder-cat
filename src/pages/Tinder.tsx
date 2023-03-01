@@ -1,6 +1,6 @@
 import { authActions } from '@/app/auth-slice'
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
-import { btPets, fav, logo, nope } from '@/assets/Icons'
+import { btPets, fav, logo, logOut, nope } from '@/assets/Icons'
 import Api from '@/common/axios'
 import Card from '@/components/Card'
 import EmptyCard from '@/components/EmptyCard'
@@ -90,7 +90,7 @@ const Tinder = () => {
                 <button><img src={fav.src}/></button> 
             </Favorite>
             <Logout onClick={logout}>
-                <img src={fav.src}/> 
+                <img src={logOut.src}/> 
             </Logout>         
             { catData ? <Card catData={catData}/> : <EmptyCard/> }
             <Buttons>

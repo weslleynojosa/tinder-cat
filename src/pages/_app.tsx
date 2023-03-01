@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return <Provider store={store}>
             <PersistGate persistor={persistor}>
             <style jsx global>{`
-              html {
+              html, input, button {
                 font-family: ${quickSand.style.fontFamily};
               }
             `}</style>

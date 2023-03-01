@@ -9,6 +9,8 @@ import scale from './scale.svg'
 import pets from './pets.svg'
 import catFace from './cat-face.svg'
 import cryCat from './crying-cat.svg'
+import frontImg from './front-img.svg'
+import logOut from './logout.svg'
 
 export {
     btPets,
@@ -21,5 +23,7 @@ export {
     scale,
     pets,
     catFace,
-    cryCat
+    cryCat,
+    frontImg,
+    logOut
 }
