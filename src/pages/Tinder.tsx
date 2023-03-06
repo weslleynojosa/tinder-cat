@@ -1,12 +1,13 @@
 import { authActions } from '@/app/auth-slice'
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
-import { btPets, fav, logo, logOut, nope } from '@/assets/Icons'
+import { btPets, fav, logo, logOut, nope } from '@/common/Icons'
 import Api from '@/common/axios'
 import Card from '@/components/Card'
 import EmptyCard from '@/components/EmptyCard'
 import { Button, Buttons, Container, Favorite, Home, Logo, Logout } from '@/components/styles/Home.styled'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
+import Image from 'next/image'
 
 export type Cat = {
     id: string,
@@ -85,18 +86,18 @@ const Tinder = () => {
   return (
     <Container>
         <Home>
-            <Logo src={logo.src}/>
+            <Logo src={logo} alt='' width={100} height={30}/>
             <Favorite href={'/Favorites'}>
-                <button><img src={fav.src}/></button> 
+                <button><Image src={fav} alt='' width={30} height={30}/></button> 
             </Favorite>
             <Logout onClick={logout}>
-                <img src={logOut.src}/> 
+                <Image src={logOut} alt='' width={30} height={30}/>
             </Logout>         
             { catData ? <Card catData={catData}/> : <EmptyCard/> }
             <Buttons>
-                <Button onClick={getNewCat}><img src={nope.src}/></Button>
+                <Button onClick={getNewCat}><Image src={nope} alt='' width={40} height={40}/></Button>
                 <Button onClick={() => { setFavorite(catData?.id as string) }}>
-                    <img src={btPets.src}/>
+                    <Image src={btPets} alt='' width={40} height={40}/>
                 </Button>
             </Buttons>
         </Home> 

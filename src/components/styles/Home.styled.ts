@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import styled from 'styled-components'
 
 export const Container = styled.div`
@@ -21,7 +22,7 @@ export const Home = styled.div`
     position: relative;
 `
 
-export const Logo = styled.img`
+export const Logo = styled(Image)`
     margin: 10px 0 15px;
 `
 
@@ -52,7 +53,7 @@ export const Buttons = styled.div`
 
 export const Button = styled.button`
     background: #FFFFFF;
-    box-shadow: 0px 2.96667px 14.8333px rgb(0 0 0 / 10%);
+    box-shadow: 0px 3px 15px rgb(0 0 0 / 20%);
     border: none;
     border-radius: 100%;
     margin: 10px 50px;

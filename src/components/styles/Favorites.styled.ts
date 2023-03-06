@@ -29,7 +29,7 @@ export const Title = styled.img`
     margin: 0 auto;
 `
 
-export const ActionButton = styled(Link)`
+export const ActionButton = styled.div`
     position: absolute;
     left: 0;
     margin: 10px 0 15px;
@@ -71,8 +71,8 @@ export const CardFav = styled.div`
         width: 30px;
         height: 30px;
         position: absolute;
-        right: 5px;
-        top: 5px;
+        right: 10px;
+        top: 10px;
     }
 `
 

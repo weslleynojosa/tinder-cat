@@ -1,9 +1,36 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   compiler: {
     styledComponents: true
   }
 }
 
-module.exports = nextConfig
+const images = {
+  remotePatterns: [
+    {
+      protocol: 'https',
+      hostname: 'cdn2.thecatapi.com/',
+      pathname: '/images/**',
+    },
+  ],
+}
+
+module.exports = { 
+  nextConfig: {
+    reactStrictMode: false,
+    compiler: {
+      styledComponents: true
+    }
+  },
+  images: {
+    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn2.thecatapi.com',
+        pathname: '/images/**',
+      },
+    ],
+  }
+}

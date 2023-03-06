@@ -32,21 +32,22 @@ export const Form = styled.form`
 
     label {
         font-weight: 900;
-        font-size: 0.8em;
-        color: #FFF;
+        font-size: 0.9em;
+        color: #FF8B37;
         margin-bottom: 5px;
     }
 
     input {
-        background: rgba(255, 2, 2, 0.1);
+        background: #FFF;
         border-radius: 5px;
         border: none;
         height: 25px;
         padding: 10px 15px;
         font-size: 1em;
         font-weight: 600;
-        color: #FFF;
+        color: #FF8B37;
         margin-bottom: 20px;
+        border: solid 1px #FF8B37;
     }
 
     input:focus-visible {
@@ -62,5 +63,25 @@ export const Form = styled.form`
         font-weight: 700;
         padding: 10px;
         margin-top: 10px;
+    }
+`
+
+export const PassWord = styled.div`
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+
+    button {
+        position: absolute;
+        right: 10px;
+        height: 25px;
+        margin-top: 2.5px;
+        border: none;
+        background: none;
+    }
+
+    input {
+        width: 100%;
     }
 `

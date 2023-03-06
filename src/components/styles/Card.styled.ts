@@ -6,14 +6,14 @@ export const CardCat = styled.div`
     position: relative;
     margin: 0 10px;
     border-radius: 10px;
-    box-shadow: 0px 4px 20px rgb(0 0 0 / 10%);
+    box-shadow: 0px 4px 20px rgb(0 0 0 / 20%);
     overflow: hidden;
 
-    .cat-img {
+    /* .cat-img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-    }
+    } */
 `
 
 export const Empty = styled.div`
@@ -25,7 +25,7 @@ export const Empty = styled.div`
     position: relative;
     margin: 0 10px;
     border-radius: 10px;
-    box-shadow: 0px 4px 20px rgb(0 0 0 / 10%);
+    box-shadow: 0px 4px 20px rgb(0 0 0 / 20%);
     overflow: hidden;
 
     img {

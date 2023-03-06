@@ -1,31 +1,30 @@
 import { Cat } from "@/pages/Tinder"
 import { CardCat, CardInfo, Tag, Tags } from "./styles/Card.styled"
-import pets from '../assets/pets.svg';
-import globe from '../assets/public.svg';
-import scale from '../assets/scale.svg';
+import Image from "next/image";
+import { globe, pets, scale } from "@/common/Icons";
 
 interface ICatData {
     catData: Cat
 }
 
 const Card: React.FC<ICatData> = (props) => {
-    const { id, breeds, url } = props.catData
+    const { breeds, url } = props.catData
 
     return (
         <CardCat>
-            <img className="cat-img" src={url}/>
+            <Image src={url} alt='' fill/>
             <CardInfo>
                 <div className="cat-data">
                     <div className="info">
-                        <img src={globe.src} alt=''/>
+                        <Image src={globe} alt='' width={15} height={15}/>
                         <span>{breeds.origin}</span>
                     </div>
                     <div className="info">
-                        <img src={pets.src} alt=''/>
+                        <Image src={pets} alt='' width={15} height={15}/>
                         <span>{breeds.name}</span>
                     </div>
                     <div className="info">
-                        <img src={scale.src} alt=''/>
+                        <Image src={scale} alt='' width={15} height={15}/>
                         <span>{breeds.weight.metric + 'kg'}</span>
                     </div>
                 </div>

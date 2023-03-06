@@ -1,6 +1,6 @@
 import { favActions, getFavorites } from '@/app/fav-slice'
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
-import { back, cryCat, favTitle, pets } from '@/assets/Icons'
+import { back, cryCat, favTitle, pets } from '@/common/Icons'
 import Api from '@/common/axios'
 import { ActionButton, CardFav, CatGrid, EmptyFav, Fav, Header, Title } from '@/components/styles/Favorites.styled'
 import { Container } from '@/components/styles/Home.styled'
@@ -36,13 +36,17 @@ const Favorites = () => {
         })
     }
 
+    const handleClick = () => {
+        router.push('/Tinder')
+    }
+
     return (
         <Container>
             <Fav>
                 <Header>
                     <Title src={favTitle.src}/>
-                    <ActionButton href={'/Tinder'}>
-                        <button><img src={back.src}/></button>
+                    <ActionButton>
+                        <button onClick={handleClick}><img src={back.src}/></button>
                     </ActionButton>
                 </Header>
                 { favCats.cats && favCats.cats.length ? 
