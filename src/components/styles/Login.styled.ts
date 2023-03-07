@@ -15,7 +15,7 @@ export const Container = styled.div`
 export const FrontImg = styled.div`
     margin-top: 30px;
     width: 65%;
-    max-width: 280px;
+    max-width: 240px;
 
     img {
         width: 100%;
@@ -63,6 +63,16 @@ export const Form = styled.form`
         font-weight: 700;
         padding: 10px;
         margin-top: 10px;
+    }
+
+    span {
+        width: 100%;
+        height: 15px;
+        text-align: center;
+        color: #FF0000;
+        margin-top: 5px;
+        font-weight: 800;
+        font-size: 0.8em;
     }
 `
 

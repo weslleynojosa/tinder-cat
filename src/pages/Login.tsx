@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "@/app/hooks"
 import { frontImg, see, unSee } from "@/common/Icons"
 import { user, users } from "@/common/users"
 import { Container, Form, FrontImg, PassWord } from "@/components/styles/Login.styled"
+import axios from "axios"
 import { useFormik } from "formik"
 import Image from "next/image"
 import { useRouter } from "next/router"
@@ -16,7 +17,7 @@ interface IAuth {
 const Login = () => {
     const [showPassword, setShowPassword] = useState<boolean>(false)
     const [wrongPassword, setWrongPassword] = useState<boolean>(false)
-    const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+    // const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
     const router = useRouter()
     const dispatch = useAppDispatch()
     const initialValues: IAuth = { username: '', password: ''}
@@ -29,19 +30,26 @@ const Login = () => {
     const formik = useFormik({
         initialValues: initialValues,
         onSubmit: values => {
-            new Promise((resolve, reject) => {
-                const authUser = users.find((user) => user.username === values.username)
-                authUser ? logUser(authUser)
-                :
-                reject('credenciais inválidas')
-            }).catch((error) => alert('credenciais inválidas'))
+            axios.get('/api/users')
+            .then((res) => {
+                res.data.find((user: user) => {
+                    if (user.username === values.username && user.password === values.password) {
+                        logUser(user)
+                    } else {
+                        setWrongPassword(true)
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
         }
     })
 
     return (
         <Container>
             <FrontImg>
-                <img src={frontImg.src}/>               
+                <img src={frontImg.src}/>
             </FrontImg>
             <Form onSubmit={formik.handleSubmit}>
                 <label>Username</label>
@@ -59,6 +67,7 @@ const Login = () => {
                     <input id='password' type={ showPassword ? 'text' : 'password' } value={formik.values.password} onChange={formik.handleChange}/>
                 </PassWord>
                 <button type="submit">Login</button>
+                { wrongPassword ? <span>Usuário ou senha incorretos</span> : <span/> }
             </Form>
         </Container>
     )
