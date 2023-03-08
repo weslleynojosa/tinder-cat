@@ -2,10 +2,12 @@ import { favActions, getFavorites } from '@/app/fav-slice'
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { back, cryCat, favTitle, pets } from '@/common/Icons'
 import Api from '@/common/axios'
-import { ActionButton, CardFav, CatGrid, EmptyFav, Fav, Header, Title } from '@/components/styles/Favorites.styled'
+import { ActionButton, CardFav, CatGrid, EmptyFav, Fav, Header, RemoveFavorite, Title } from '@/components/styles/Favorites.styled'
 import { Container } from '@/components/styles/Home.styled'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
+import { Button } from '@/components/styles/components/Button.styled'
+import Image from 'next/image'
 
 export type FavCat = {
     id: number,
@@ -46,15 +48,17 @@ const Favorites = () => {
                 <Header>
                     <Title src={favTitle.src}/>
                     <ActionButton>
-                        <button onClick={handleClick}><img src={back.src}/></button>
+                        <Button onClick={handleClick}><img src={back.src}/></Button>
                     </ActionButton>
                 </Header>
                 { favCats.cats && favCats.cats.length ? 
                 <CatGrid>
                     {favCats.cats.map((cats, index) => {
                         return <CardFav key={index}>
-                                <img className='cat-photo' src={cats.image.url}/>
-                                <button onClick={() => { removeFavorite(cats.id) }}><img src={pets.src}/></button>
+                                <Image src={cats.image.url} alt='' fill/>
+                                <RemoveFavorite onClick={() => { removeFavorite(cats.id) }}>
+                                    <Image src={pets.src} alt='' width={18} height={18}/>
+                                </RemoveFavorite>
                             </CardFav>
                     })}
                 </CatGrid> :

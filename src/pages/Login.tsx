@@ -2,7 +2,8 @@ import { authActions } from "@/app/auth-slice"
 import { useAppDispatch, useAppSelector } from "@/app/hooks"
 import { frontImg, see, unSee } from "@/common/Icons"
 import { user, users } from "@/common/users"
-import { Container, Form, FrontImg, PassWord } from "@/components/styles/Login.styled"
+import { Input } from "@/components/styles/components/Input.styled"
+import { Alert, Container, Form, FrontImg, PassWord, ShowPassword, Submit } from "@/components/styles/Login.styled"
 import axios from "axios"
 import { useFormik } from "formik"
 import Image from "next/image"
@@ -49,25 +50,25 @@ const Login = () => {
     return (
         <Container>
             <FrontImg>
-                <img src={frontImg.src}/>
+                <Image src={frontImg.src} fill alt=""/>
             </FrontImg>
             <Form onSubmit={formik.handleSubmit}>
                 <label>Username</label>
-                <input id='username' type='text' value={formik.values.username} onChange={formik.handleChange} />
+                <Input id='username' type='text' value={formik.values.username} onChange={formik.handleChange} />
                 <label>Password</label>
                 <PassWord>
-                    <button type="button" onClick={() => setShowPassword(!showPassword)}>
+                    <ShowPassword type="button" onClick={() => setShowPassword(!showPassword)}>
                         <Image 
                             src={ showPassword ? see.src : unSee.src}
                             alt=''
                             width={20}
                             height={20}
                             />
-                    </button>
-                    <input id='password' type={ showPassword ? 'text' : 'password' } value={formik.values.password} onChange={formik.handleChange}/>
+                    </ShowPassword>
+                    <Input id='password' type={ showPassword ? 'text' : 'password' } value={formik.values.password} onChange={formik.handleChange}/>
                 </PassWord>
-                <button type="submit">Login</button>
-                { wrongPassword ? <span>Usuário ou senha incorretos</span> : <span/> }
+                <Submit type="submit">Login</Submit>
+                { wrongPassword ? <Alert>Usuário ou senha incorretos</Alert> : <Alert/> }
             </Form>
         </Container>
     )

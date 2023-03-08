@@ -4,10 +4,11 @@ import { btPets, fav, logo, logOut, nope } from '@/common/Icons'
 import Api from '@/common/axios'
 import Card from '@/components/Card'
 import EmptyCard from '@/components/EmptyCard'
-import { Button, Buttons, Container, Favorite, Home, Logo, Logout } from '@/components/styles/Home.styled'
+import { Buttons, Container, Favorite, Home, Logo, Logout, VoteButton } from '@/components/styles/Home.styled'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
+import { Button } from '@/components/styles/components/Button.styled'
 
 export type Cat = {
     id: string,
@@ -86,19 +87,19 @@ const Tinder = () => {
   return (
     <Container>
         <Home>
-            <Logo src={logo} alt='' width={100} height={30}/>
+            <Logo src={logo} alt='' width={100} height={40}/>
             <Favorite href={'/Favorites'}>
-                <button><Image src={fav} alt='' width={30} height={30}/></button> 
+                <Button><Image src={fav} alt='' width={30} height={30}/></Button> 
             </Favorite>
             <Logout onClick={logout}>
                 <Image src={logOut} alt='' width={30} height={30}/>
             </Logout>         
             { catData ? <Card catData={catData}/> : <EmptyCard/> }
             <Buttons>
-                <Button onClick={getNewCat}><Image src={nope} alt='' width={40} height={40}/></Button>
-                <Button onClick={() => { setFavorite(catData?.id as string) }}>
+                <VoteButton onClick={getNewCat}><Image src={nope} alt='' width={40} height={40}/></VoteButton>
+                <VoteButton onClick={() => { setFavorite(catData?.id as string) }}>
                     <Image src={btPets} alt='' width={40} height={40}/>
-                </Button>
+                </VoteButton>
             </Buttons>
         </Home> 
     </Container>

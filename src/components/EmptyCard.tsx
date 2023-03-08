@@ -7,7 +7,7 @@ const EmptyCard = () => {
 
     return (
         <Empty>
-            <Image src={catFace} width={50} height={50} alt=''/>
+            <Image src={catFace} width={150} height={150} alt=''/>
         </Empty>
     )
 }

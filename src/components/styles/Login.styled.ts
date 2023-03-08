@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { Button } from "./components/Button.styled";
+import { Div } from "./components/Div.styled";
 
 
 export const Container = styled.div`
@@ -13,14 +15,11 @@ export const Container = styled.div`
 `
 
 export const FrontImg = styled.div`
-    margin-top: 30px;
     width: 65%;
+    height: 45%;
+    margin-top: 30px;
     max-width: 240px;
-
-    img {
-        width: 100%;
-    }
-
+    position: relative;
 `
 
 export const Form = styled.form`
@@ -32,66 +31,45 @@ export const Form = styled.form`
 
     label {
         font-weight: 900;
-        font-size: 0.9em;
-        color: #FF8B37;
+        font-size: ${props => props.theme.fontSizes.xs};
+        color: ${props => props.theme.colors.primary};
         margin-bottom: 5px;
-    }
-
-    input {
-        background: #FFF;
-        border-radius: 5px;
-        border: none;
-        height: 25px;
-        padding: 10px 15px;
-        font-size: 1em;
-        font-weight: 600;
-        color: #FF8B37;
-        margin-bottom: 20px;
-        border: solid 1px #FF8B37;
-    }
-
-    input:focus-visible {
-        outline: none;
-    }
-
-    button {
-        border: none;
-        border-radius: 5px;
-        background-color: #ff451d;
-        color: #FFF;
-        font-size: 20px;
-        font-weight: 700;
-        padding: 10px;
-        margin-top: 10px;
-    }
-
-    span {
-        width: 100%;
-        height: 15px;
-        text-align: center;
-        color: #FF0000;
-        margin-top: 5px;
-        font-weight: 800;
-        font-size: 0.8em;
     }
 `
 
-export const PassWord = styled.div`
+export const Submit = styled(Button)`
+    border-radius: 5px;
+    background-color: ${props => props.theme.colors.orange};
+    color: ${props => props.theme.colors.white};
+    padding: 10px;
+    margin-top: 10px;
+
+`
+
+export const PassWord = styled(Div)`
     width: 100%;
     position: relative;
-    display: flex;
     flex-direction: row;
-
-    button {
-        position: absolute;
-        right: 10px;
-        height: 25px;
-        margin-top: 2.5px;
-        border: none;
-        background: none;
-    }
 
     input {
         width: 100%;
     }
+`
+
+export const ShowPassword = styled(Button)`
+    position: absolute;
+    right: 10px;
+    height: 25px;
+    margin-top: 12.5px;
+    background: none;
+`
+
+export const Alert = styled.span`
+    width: 100%;
+    height: 15px;
+    text-align: center;
+    color: ${props => props.theme.colors.alert};
+    margin-top: 5px;
+    font-weight: 800;
+    font-size: ${props => props.theme.fontSizes.xs};
 `

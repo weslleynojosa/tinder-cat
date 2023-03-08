@@ -1,5 +1,5 @@
 import { Cat } from "@/pages/Tinder"
-import { CardCat, CardInfo, Tag, Tags } from "./styles/Card.styled"
+import { CardCat, CardInfo, CatData, Info, Tag, Tags } from "./styles/Card.styled"
 import Image from "next/image";
 import { globe, pets, scale } from "@/common/Icons";
 
@@ -14,20 +14,20 @@ const Card: React.FC<ICatData> = (props) => {
         <CardCat>
             <Image src={url} alt='' fill/>
             <CardInfo>
-                <div className="cat-data">
-                    <div className="info">
+                <CatData>
+                    <Info>
                         <Image src={globe} alt='' width={15} height={15}/>
                         <span>{breeds.origin}</span>
-                    </div>
-                    <div className="info">
+                    </Info>
+                    <Info>
                         <Image src={pets} alt='' width={15} height={15}/>
                         <span>{breeds.name}</span>
-                    </div>
-                    <div className="info">
+                    </Info>
+                    <Info>
                         <Image src={scale} alt='' width={15} height={15}/>
                         <span>{breeds.weight.metric + 'kg'}</span>
-                    </div>
-                </div>
+                    </Info>
+                </CatData>
                 <Tags>
                     {breeds.temperament.slice(0,3).map((temp, index) => {
                         return <Tag key={index}>{temp}</Tag>
