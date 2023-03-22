@@ -53,9 +53,9 @@ const Login = () => {
                 <Image src={frontImg.src} fill alt=""/>
             </FrontImg>
             <Form onSubmit={formik.handleSubmit}>
-                <label>Username</label>
+                <label htmlFor="username">Username</label>
                 <Input id='username' type='text' value={formik.values.username} onChange={formik.handleChange} />
-                <label>Password</label>
+                <label htmlFor="password">Password</label>
                 <PassWord>
                     <ShowPassword type="button" onClick={() => setShowPassword(!showPassword)}>
                         <Image 
